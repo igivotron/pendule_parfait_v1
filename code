@@ -1,0 +1,70 @@
+from math import *
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+a0 = 10
+L = 1
+Dt = 10000
+m = 6.27 
+
+### CONSTANTES ###
+
+g = 9.81
+b = sqrt(g/L)
+t0 = 0
+a = 0
+t=0
+s=0
+F=0
+Fp=m*g
+
+### THETA ###
+x1 = [t0]
+y1 = [a0]
+
+### s ###
+x2 = [t0]
+y2 = [s]
+
+### Force en N ###
+x3 = [t0]
+y3 = [F]
+
+
+
+for n in range(Dt):
+    t = t0
+    a = a0*sin(b*t) 
+    s = L*a
+    F = Fp * sin(a)
+    
+
+    x1.append(t)
+    y1.append(a)
+
+    x2.append(t)
+    y2.append(s)
+
+    x3.append(t)
+    y3.append(F)
+
+    n=+1
+    t0 = t0+0.01
+
+freq=(1/(2*pi))*b
+    
+fig=plt.figure(figsize=[16,9])
+plt.plot(x3,y3, color = 'silver')
+plt.plot(x1,y1, color ='b')
+plt.plot(x2,y2, color = 'green')
+plt.axhline(y=a0, color = 'r')
+plt.axhline(y=-a0, color = 'r')
+plt.axhline(y=freq, color ='gold')
+plt.grid()
+
+print("Fréquence =",freq,("Hz"))
+    
+
+plt.show()
+
+
